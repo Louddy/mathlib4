@@ -75,7 +75,7 @@ def MVarId.introsWithBinderIdents
     (g : MVarId) (ids : List (TSyntax ``binderIdent)) :
     MetaM (List (TSyntax ``binderIdent) × Array FVarId × MVarId) := do
   let type ← g.getType
-  let type ← instantiateMVars type
+  let type ← Lean.instantiateMVars type
   let n := getIntrosSize type
   if n == 0 then
     return (ids, #[], g)

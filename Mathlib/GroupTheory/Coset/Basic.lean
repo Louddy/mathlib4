@@ -131,6 +131,14 @@ theorem mem_leftCoset_leftCoset {a : α} (ha : a • (s : Set α) = s) : a ∈ s
 @[to_additive mem_rightAddCoset_rightAddCoset]
 theorem mem_rightCoset_rightCoset {a : α} (ha : op a • (s : Set α) = s) : a ∈ s := by
   rw [← SetLike.mem_coe, ← ha]; exact mem_own_rightCoset s a
+  -- set_option aesop.dev.statefulForward false in
+  -- aesop (add unsafe forward [mem_own_rightCoset])
+
+#print mem_rightCoset_rightCoset
+#constants rightCoset_one
+
+--SetLike.mem_coe, mem_own_rightCoset
+-- aesop (add unsafe [SetLike.mem_coe, mem_own_rightCoset])
 
 end CosetSubmonoid
 
