@@ -18,7 +18,7 @@ import Mathlib.Tactic.Linter.UnusedTactic
 import Mathlib.Tactic.Linter.Style
 -- This import makes the `#min_imports` command available globally.
 import Mathlib.Tactic.MinImports
-import Mathlib.Tactic.getUsedThms
+import Mathlib.Tactic.GetUsedThms
 /-!
 This is the root file in Mathlib: it is imported by virtually *all* Mathlib files.
 For this reason, the imports of this files are carefully curated.
