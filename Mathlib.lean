@@ -5693,6 +5693,7 @@ import Mathlib.Tactic.GCongr.CoreAttrs
 import Mathlib.Tactic.GCongr.ForwardAttr
 import Mathlib.Tactic.Generalize
 import Mathlib.Tactic.GeneralizeProofs
+import Mathlib.Tactic.GetUsedThms
 import Mathlib.Tactic.Group
 import Mathlib.Tactic.GuardGoalNums
 import Mathlib.Tactic.GuardHypNums
@@ -5865,7 +5866,6 @@ import Mathlib.Tactic.Widget.SelectPanelUtils
 import Mathlib.Tactic.Widget.StringDiagram
 import Mathlib.Tactic.WithoutCDot
 import Mathlib.Tactic.Zify
-import Mathlib.Tactic.GetUsedThms
 import Mathlib.Testing.Plausible.Functions
 import Mathlib.Testing.Plausible.Sampleable
 import Mathlib.Testing.Plausible.Testable
