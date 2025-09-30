@@ -2,6 +2,8 @@ import Lean
 import Std
 import Aesop
 
+namespace Mathlib.Tactic
+
 open Lean Elab Tactic
 
 /-- Get Ci associated to a name-/
