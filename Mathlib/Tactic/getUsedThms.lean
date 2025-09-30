@@ -1,8 +1,6 @@
 import Lean
-import Std
-import Aesop
 
-namespace Mathlib.Tactic
+namespace Mathlib.Tactic.GetUsedThms
 
 open Lean Elab Tactic
 
@@ -53,3 +51,5 @@ elab "#constants " id:ident : command => do
     let r' ← r.filterM fun name => return !(← liftCoreM <| Name.onlyLogicInType name)
     logInfo m!"Got expression: {r'}"
   | none => logInfo m!"No proof found for {id}"
+
+end Mathlib.Tactic.GetUsedThms
