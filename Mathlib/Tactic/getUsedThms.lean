@@ -42,14 +42,35 @@ def Name.isTheorem (name : Name) : CoreM Bool := do
 def Expr.getUsedTheorems (e : Expr) : CoreM (Array Name) :=
   e.getUsedConstants.filterM Name.isTheorem
 
-open Command in
+open Lean.Meta in
+def isNotSimpTheorem (name : Name) : CoreM Bool := do
+  return ! (← isInstance name)
+
+open Meta in
+def isNotInstance (name : Name) : CoreM Bool := do
+  return !(← getSimpTheorems).lemmaNames.contains (.decl name)
+
+def isNotPrivate (name : Name) : Bool := ! (isPrivateName name)
+
+open Expr in
+def isNotType (name : Name) : Bool := ! (isType (.const name []))
+
+open Meta Command in
 elab "#constants " id:ident : command => do
   let ci ← getConstInfo <| ← resolveGlobalConstNoOverload id
   match ci.value? with
   | some proof =>
-    let r ← liftCoreM <| Expr.getUsedTheorems proof
-    let r' ← r.filterM fun name => return !(← liftCoreM <| Name.onlyLogicInType name)
-    logInfo m!"Got expression: {r'}"
+    let mut r ← liftCoreM <| Expr.getUsedTheorems proof
+    r ← r.filterM fun name => return !(← liftCoreM <| Name.onlyLogicInType name)
+    r ← r.filterM (liftCoreM $ isNotSimpTheorem ·)
+    r ← r.filterM (liftCoreM $ isNotInstance ·)
+    r := r.filter isNotPrivate
+    r := r.filter isNotType
+    logInfo m!"Got expression: {r}"
   | none => logInfo m!"No proof found for {id}"
+
+#check Nat.zero_add
+
+#constants Nat.add_comm
 
 end Mathlib.Tactic.GetUsedThms
