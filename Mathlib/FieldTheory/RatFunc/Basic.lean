@@ -5,8 +5,9 @@ Authors: Anne Baanen
 -/
 module
 
-public import Mathlib.Algebra.CharP.Algebra
+import all Mathlib.FieldTheory.RatFunc.Defs
 public import Mathlib.FieldTheory.RatFunc.Defs
+public import Mathlib.Algebra.CharP.Algebra
 public import Mathlib.RingTheory.Polynomial.Content
 public import Mathlib.RingTheory.Algebraic.Integral
 
